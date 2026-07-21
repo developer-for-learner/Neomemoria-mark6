@@ -1,0 +1,55 @@
+/* Accessibility and resilience improvements. */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body { overflow-x: hidden; }
+
+button,
+input,
+select,
+textarea,
+[role="button"] { touch-action: manipulation; }
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[role="button"]:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--accent, #7da6ff);
+  outline-offset: 3px;
+}
+
+.header-user,
+.menu-user > div:last-child {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.toast { gap: 0.55rem; }
+.toast span { overflow-wrap: anywhere; }
+
+@media (pointer: coarse) {
+  button,
+  .btn,
+  .menu-item,
+  .btn-icon,
+  .btn-icon-sm { min-height: 44px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
